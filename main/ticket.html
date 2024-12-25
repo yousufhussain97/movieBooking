@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="icon/favicon-32x32.png" sizes="32x32">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Cinema Entrance Ticket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .ticket {
+            display: flex;
+            background: linear-gradient(135deg, #444, #222);
+            color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 600px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            font-size: 14px;
+            position: relative;
+        }
+
+        .ticket::before,
+        .ticket::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #121212;
+            z-index: 1;
+        }
+
+        .ticket::before {
+            top: -15px;
+            left: -15px;
+            clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+        }
+
+        .ticket::after {
+            bottom: -15px;
+            right: -15px;
+            clip-path: polygon(100% 100%, 0% 100%, 100% 0%);
+        }
+
+        .ticket-left {
+            padding: 20px;
+            background-color: #1d1d1d;
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .ticket-left h1 {
+            color: #FF5733;
+            margin: 0;
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+
+        .ticket-details {
+            margin: 20px 0;
+        }
+
+        .ticket-details div {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .ticket-details span {
+            font-weight: normal;
+            color: #FF5733;
+        }
+
+        .ticket-footer {
+            background-color: #FF5733;
+            color: #333;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .ticket-right {
+            background-color: #222;
+            color: white;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 10px;
+            text-align: center;
+            border-left: 2px dashed #444;
+        }
+
+        .ticket-right p {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        .ticket-barcode {
+            margin-top: 20px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .barcode {
+            margin-top: 10px;
+            display: block;
+            background-color: white;
+            height: 60px;
+            width: 100%;
+            border-radius: 2px;
+        }
+
+        .ticket-right small {
+            font-size: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="color:white;margin:30px;"><i class="fa-solid fa-arrow-left"></i><span>   </span>Back</div><br>
+    <div class="ticket">
+        <!-- Left Section -->
+        <div class="ticket-left">
+            <h1 style="color:white;text-align: center;font-weight: 700;font-size:25px;">Cinema Entrance Ticket</h1>
+            <div class="ticket-details">
+                <div><span style="color:white;font-weight:bolder">Name:</span> <span id="user-name">John Doe</span></div>
+                <div><span style="color:white;font-weight:bolder">Movie:</span> <span id="movie-name">Avengers: Endgame</span></div>
+                <div><span style="color:white;font-weight:bolder">Date:</span> <span id="movie-date">4 April</span></div>
+                <div><span style="color:white;font-weight:bolder">Time:</span> <span id="movie-time">18:00</span></div>
+                <div><span style="color:white;font-weight:bolder">Seat:</span> <span id="user-seat">Row 5, Seat 24</span></div>
+                <div><span style="color:white;font-weight:bolder">Screen Type:</span> <span id="screen-type">3D</span></div>
+            </div>
+            <div class="ticket-footer">
+                Total Price: <span id="total-price">$15</span>
+            </div>
+        </div>
+        <!-- Right Section -->
+        <div class="ticket-right">
+            <p>OM THEATER</p>
+            <div class="ticket-barcode">
+                <p>Cinema Ticket Prices: $15</p>
+                <div class="barcode"></div>
+                <small>Code: 624586214763</small>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulating dynamic data (for demonstration)
+        const urlParams = new URLSearchParams(window.location.search);
+
+        const userName = urlParams.get('name') || 'John Doe';
+        const movieName = urlParams.get('movie') || 'Avengers: Endgame';
+        const movieDate = urlParams.get('date') || '4 April';
+        const movieTime = urlParams.get('time') || '18:00';
+        const userSeat = urlParams.get('seat') || 'Row 5, Seat 24';
+        const screenType = urlParams.get('screen') || '3D';
+
+        let basePrice = 10;
+        if (screenType === "3D") basePrice = 15;
+        if (screenType === "4D") basePrice = 20;
+        if (screenType === "VR") basePrice = 25;
+
+        document.getElementById('user-name').textContent = userName;
+        document.getElementById('movie-name').textContent = movieName;
+        document.getElementById('movie-date').textContent = movieDate;
+        document.getElementById('movie-time').textContent = movieTime;
+        document.getElementById('user-seat').textContent = userSeat;
+        document.getElementById('screen-type').textContent = screenType;
+        document.getElementById('total-price').textContent = "$" + basePrice;
+    </script>
+</body>
+
+</html>

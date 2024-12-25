@@ -1,0 +1,154 @@
+/* styles.css */
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sign-in Section */
+.sign {
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0;
+}
+
+.sign__content {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 450px;
+    margin: 0 auto;
+    color: #fff;
+}
+
+.sign__logo img {
+    display: block;
+    margin: 0 auto 20px;
+}
+
+h3 {
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.sign__group {
+    margin-bottom: 20px;
+}
+
+.sign__input {
+    width: 100%;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.sign__input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.sign__group--checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.sign__group--checkbox input {
+    margin-right: 10px;
+}
+
+.sign__btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.sign__btn:hover {
+    background-color: #0056b3;
+}
+
+/* Divider */
+.sign__delimiter {
+    text-align: center;
+    color: #ccc;
+    margin: 20px 0;
+}
+
+.sign__social {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.sign__social a {
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.sign__social i {
+    margin-left: 5px;
+}
+
+/* Movie Ticket Booking Form */
+h4 {
+    color: #fff;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.sign__group label {
+    display: block;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.seat-map {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.seat-map img {
+    max-width: 100%;
+}
+
+/* Footer Text */
+.sign__text {
+    text-align: center;
+    color: #ccc;
+}
+
+.sign__text a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.sign__text a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 767px) {
+    .sign__content {
+        padding: 20px;
+    }
+
+    .sign__btn {
+        font-size: 16px;
+    }
+
+    .sign__input {
+        font-size: 14px;
+    }
+}
